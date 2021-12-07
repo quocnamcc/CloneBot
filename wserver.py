@@ -704,7 +704,7 @@ async def set_priority(request):
 @routes.get('/')
 async def homepage(request):
 
-    return web.Response(text="<p style='font-family: -apple-system, BlinkMacSystemFont, sans-serif;text-align: center;font-size: 50px;display: flex;justify-content: center;align-items: center;min-height: 85vh;'>Service is running, but nothing here, yet!</p><br><p style='font-family: -apple-system, BlinkMacSystemFont, sans-serif;text-align: center;font-size: 50px;display: flex;justify-content: center;align-items: center;min-height: 85vh;'>Contact: <a href='https://t.me/nbaophuc/'>Telegram</a></p>", content_type="text/html")
+    return web.Response(text="<p style='font-family: -apple-system, BlinkMacSystemFont, sans-serif;text-align: center;font-size: 50px;display: flex;justify-content: center;align-items: center;min-height: 85vh;'>Service is running, but nothing here, yet!</p>", content_type="text/html")
 
 
 async def e404_middleware(app, handler):
