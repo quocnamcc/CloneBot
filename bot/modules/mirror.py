@@ -156,9 +156,9 @@ class MirrorListener(listeners.MirrorListeners):
             msg = f'<b>☞ 📂Tên tệp : </b><code>{download_dict[self.uid].name()}</code>\n<b>☞ 📦Kích cỡ : </b><code>{size}</code>'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                 msg += '\n<b>☞ 🌀Kiểu : </b><code>Folder</code>'
-                msg += f'\n<b>☞ 🗳Powerd by :🆅🅼🅴🅽🅿🅽</b>'
+                msg += f'\n<b>☞ 🗳Powerd by : @someone</b>'
             else:
-                msg += f'\n<b>☞ 🗳Powerd by : 🆅🅼🅴🅽🅿🅽</b>'
+                msg += f'\n<b>☞ 🗳Powerd by : @someone</b>'
             buttons = button_build.ButtonMaker()
             if SHORTENER is not None and SHORTENER_API is not None:
                 surl = requests.get(f'https://{SHORTENER}/api?api={SHORTENER_API}&url={link}&format=text').text
@@ -199,7 +199,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\n{uname}🅹🅾🅸🅽 🆃🅴🅰🅼🅳🆁🅸🆅🅴  để có quyền truy cập'
+                msg += f'\n\n{uname}Join https://www.youtube.com/watch?v=NN-PFn97cR0 để có quyền truy cập'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
