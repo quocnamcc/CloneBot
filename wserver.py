@@ -704,7 +704,7 @@ async def set_priority(request):
 @routes.get('/')
 async def homepage(request):
 
-    return web.Response(text="<h1>See AT_BOTs slam mirrorbot <a href='https://github.com/ayushteke/Torrent_2_Gdrive_mirrorbot'>@GitHub</a> By <a href='https://github.com/ayushteke'></a></h1>", content_type="text/html")
+    return web.Response(text="<p style='font-family: -apple-system, BlinkMacSystemFont, sans-serif;text-align: center;font-size: 50px;display: flex;justify-content: center;align-items: center;min-height: 85vh;'>Service is running, but nothing here, yet!<br>Contact: <a href='https://t.me/nbaophuc/'>Telegram</a></p>", content_type="text/html")
 
 
 async def e404_middleware(app, handler):
