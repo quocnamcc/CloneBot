@@ -21,7 +21,7 @@ import socket
 import faulthandler
 faulthandler.enable()
 
-socket.setdefaulttimeout(600)
+socket.setdefaulttimeout(1500)
 
 botStartTime = time.time()
 if os.path.exists('log.txt'):
@@ -79,7 +79,7 @@ def mktable():
 
 try:
     if bool(getConfig('_____REMOVE_THIS_LINE_____')):
-        logging.error('The README.md file there to be read! Exiting now!')
+        logging.error('Hãy đọc thật kỹ file README.md, đang thoát!...')
         exit()
 except KeyError:
     pass
@@ -156,7 +156,7 @@ try:
     UPSTREAM_REPO = getConfig('UPSTREAM_REPO')
     UPSTREAM_BRANCH = getConfig('UPSTREAM_BRANCH')
 except KeyError as e:
-    LOGGER.error("One or more env variables missing! Exiting now")
+    LOGGER.error("Một trong những biết cài đặt môi trường bị thiếu. Đang thoát!...")
     exit(1)
 try:
     DB_URI = getConfig('DATABASE_URL')
