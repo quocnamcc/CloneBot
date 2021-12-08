@@ -33,17 +33,17 @@ def stats(update, context):
     disk = psutil.disk_usage('/').percent
     stats = f'<b>╭──「⭕️ BOT STATISTICS ⭕️」</b>\n' \
             f'<b>│</b>\n' \
-            f'<b>├  ⏰ Bot Uptime : {currentTime}</b>\n' \
-            f'<b>├  💾 Total Disk Space : {total}</b>\n' \
-            f'<b>├  📀 Total Used Space : {used}</b>\n' \
-            f'<b>├  💿 Total Free Space : {free}</b>\n' \
-            f'<b>├  🔼 Total Upload : {sent}</b>\n' \
-            f'<b>├  🔽 Total Download : {recv}</b>\n' \
-            f'<b>├  🖥️ CPU : {cpuUsage}%</b>\n' \
-            f'<b>├  🎮 RAM : {memory}%</b>\n' \
-            f'<b>├  💽 DISK : {disk}%</b>\n' \
+            f'<b>├  ⏰ Đã chạy được : {currentTime}</b>\n' \
+            f'<b>├  💾 Tổng dung lượng : {total}</b>\n' \
+            f'<b>├  📀 Đã dùng : {used}</b>\n' \
+            f'<b>├  💿 Còn lại : {free}</b>\n' \
+            f'<b>├  🔼 Tổng tải lên : {sent}</b>\n' \
+            f'<b>├  🔽 Tổng tải xuống : {recv}</b>\n' \
+            f'<b>├  🖥️ %CPU : {cpuUsage}%</b>\n' \
+            f'<b>├  🎮 %RAM : {memory}%</b>\n' \
+            f'<b>├  💽 %DISK : {disk}%</b>\n' \
             f'<b>│</b>\n' \
-            f'<b>╰──「 🚸 @AT_BOTs 🚸 」</b>'
+            f'<b>╰──「 🚸 @someone 🚸 」</b>'
     update.effective_message.reply_photo(IMAGE_URL, stats, parse_mode=ParseMode.HTML)
 
 
@@ -68,7 +68,7 @@ Type /{BotCommands.HelpCommand} to get a list of available commands
 
 
 def restart(update, context):
-    restart_message = sendMessage("Restarting, Please wait!", context.bot, update)
+    restart_message = sendMessage("Đang khởi động lại...", context.bot, update)
     # Save restart message object in order to reply to it after restarting
     with open(".restartmsg", "w") as f:
         f.truncate(0)
@@ -90,53 +90,53 @@ def log(update, context):
 
 def bot_help(update, context):
     help_string_adm = f'''
-/{BotCommands.HelpCommand}: To get this message
-/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to Google Drive. Use /{BotCommands.MirrorCommand} qb to mirror with qBittorrent, and use /{BotCommands.MirrorCommand} qbs to select files before downloading
-/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Start mirroring and upload the archived (.tar) version of the download
-/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: Start mirroring and upload the archived (.zip) version of the download
-/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Starts mirroring and if downloaded file is any archive, extracts it to Google Drive
-/{BotCommands.CloneCommand} [drive_url]: Copy file/folder to Google Drive
-/{BotCommands.CountCommand} [drive_url]: Count file/folder of Google Drive Links
-/{BotCommands.DeleteCommand} [drive_url]: Delete file from Google Drive (Only Owner & Sudo)
-/{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror through youtube-dl. Click /{BotCommands.WatchCommand} for more help
-/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror through youtube-dl and tar before uploading
-/{BotCommands.CancelMirror}: Reply to the message by which the download was initiated and that download will be cancelled
-/{BotCommands.CancelAllCommand}: Cancel all running tasks
-/{BotCommands.ListCommand} [search term]: Searches the search term in the Google Drive, If found replies with the link
-/{BotCommands.StatusCommand}: Shows a status of all the downloads
-/{BotCommands.StatsCommand}: Show Stats of the machine the bot is hosted on
-/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
-/{BotCommands.AuthorizeCommand}: Authorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-/{BotCommands.UnAuthorizeCommand}: Unauthorize a chat or a user to use the bot (Can only be invoked by Owner & Sudo of the bot)
-/{BotCommands.AuthorizedUsersCommand}: Show authorized users (Only Owner & Sudo)
-/{BotCommands.AddSudoCommand}: Add sudo user (Only Owner)
-/{BotCommands.RmSudoCommand}: Remove sudo users (Only Owner)
-/{BotCommands.RestartCommand}: Restart the bot
-/{BotCommands.LogCommand}: Get a log file of the bot. Handy for getting crash reports
-/{BotCommands.ConfigMenuCommand}: Get Info Menu about bot config (Owner Only)
-/{BotCommands.UpdateCommand}: Update Bot from Upstream Repo (Owner Only)
-/{BotCommands.SpeedCommand}: Check Internet Speed of the Host
-/{BotCommands.ShellCommand}: Run commands in Shell (Terminal)
+/{BotCommands.HelpCommand}: Để xem tin nhắn này
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: Bắt đầu quá trình nhân bản một liên kết. Dùng /{BotCommands.MirrorCommand} qb để nhân bản với qBittorrent và /{BotCommands.MirrorCommand} qbs để lựa chọn file trước khi nhân bản
+/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và tải lên với dạng tệp .tar
+/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và tải lên với dạng tệp .zip
+/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và nếu file được nhân bản là tệp nén, giải nén nó vào Drive
+/{BotCommands.CloneCommand} [link_Google_Drive]: Copy file/folder vào Google Drive (Team Drive)
+/{BotCommands.CountCommand} [link_Google_Drive]: Đếm số file/folder trong một Google Drive (Team Drive)
+/{BotCommands.DeleteCommand} [drive_url]: Xóa một file trong Google Drive (Chỉ có chủ sở hữu Drive & Super User mới xóa được)
+/{BotCommands.WatchCommand} [link hỗ trợ youtube-dl]: Nhân bản qua youtube-dl. Xem /{BotCommands.WatchCommand} để tìm hiểu thêm
+/{BotCommands.TarWatchCommand} [link hỗ trợ youtube-dl]: Nhân bản bằng youtube-dl và tải lên với dạng tệp .tar
+/{BotCommands.CancelMirror}: Trả lời lại tin nhắn nào đang thực hiện tiến trình nhằm hủy tác vụ đó
+/{BotCommands.CancelAllCommand}: Hủy bỏ tất cả tiến trình đang chạy
+/{BotCommands.ListCommand} [từ cần tìm kiếm]: tìm kiếm tất cả những thứ liên quan, nếu có trả về link Google Drive
+/{BotCommands.StatusCommand}: Thông tin tất cả tiến trình
+/{BotCommands.StatsCommand}: Thông tin sử dụng tài nguyên
+/{BotCommands.PingCommand}: Kiểm tra độ trễ của bot (ms)
+/{BotCommands.AuthorizeCommand}: Xác thực truy cập vào bot của người dùng (Chỉ có thể làm được khi là chủ sở hữu hoặc Super User)
+/{BotCommands.UnAuthorizeCommand}: Hủy xác thực truy cập vào bot của người dùng (Chỉ có thể làm được khi là chủ sở hữu hoặc Super User)
+/{BotCommands.AuthorizedUsersCommand}: Xem người dùng có thể truy cập (Chủ sở hữu và Super User mới xem được)
+/{BotCommands.AddSudoCommand}: Thêm vào Super User (Chủ sở hữu mới làm được)
+/{BotCommands.RmSudoCommand}: Xóa một Super User (Chủ sở hữu mới làm được), có thể xóa nhiều users cùng lúc
+/{BotCommands.RestartCommand}: Khởi động lại bot
+/{BotCommands.LogCommand}: Xem thông tin nhật ký của bot, thường dùng để debug
+/{BotCommands.ConfigMenuCommand}: Lấy thông tin về cài đặt của bot (Chủ sở hữu mới làm được)
+/{BotCommands.UpdateCommand}: Cập nhật bot từ Upstream Repo (Chủ sở hữu mới làm được)
+/{BotCommands.SpeedCommand}: Kiểm tra tốc độ mạng của máy chủ
+/{BotCommands.ShellCommand}: Chạy lệnh trong Shell (Terminal)
 /{BotCommands.ExecHelpCommand}: Get help for Executor module (Only Owner)
-/{BotCommands.TsHelpCommand}: Get help for Torrent search module
+/{BotCommands.TsHelpCommand}: Hướng dẫn cách sử dụng chức năng tìm kiếm torrent
 '''
 
     help_string = f'''
 /{BotCommands.HelpCommand}: To get this message
-/{BotCommands.MirrorCommand} [download_url][magnet_link]: Start mirroring the link to Google Drive. Use /{BotCommands.MirrorCommand} qb to mirror with qBittorrent, and use /{BotCommands.MirrorCommand} qbs to select files before downloading
-/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Start mirroring and upload the archived (.tar) version of the download
-/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: Start mirroring and upload the archived (.zip) version of the download
-/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Starts mirroring and if downloaded file is any archive, extracts it to Google Drive
-/{BotCommands.CloneCommand} [drive_url]: Copy file/folder to Google Drive
-/{BotCommands.CountCommand} [drive_url]: Count file/folder of Google Drive Links
-/{BotCommands.WatchCommand} [youtube-dl supported link]: Mirror through youtube-dl. Click /{BotCommands.WatchCommand} for more help
-/{BotCommands.TarWatchCommand} [youtube-dl supported link]: Mirror through youtube-dl and tar before uploading
-/{BotCommands.CancelMirror}: Reply to the message by which the download was initiated and that download will be cancelled
-/{BotCommands.ListCommand} [search term]: Searches the search term in the Google Drive, If found replies with the link
-/{BotCommands.StatusCommand}: Shows a status of all the downloads
-/{BotCommands.StatsCommand}: Show Stats of the machine the bot is hosted on
-/{BotCommands.PingCommand}: Check how long it takes to Ping the Bot
-/{BotCommands.TsHelpCommand}: Get help for Torrent search module
+/{BotCommands.MirrorCommand} [download_url][magnet_link]: Bắt đầu quá trình nhân bản một liên kết. Dùng /{BotCommands.MirrorCommand} qb để nhân bản với qBittorrent và /{BotCommands.MirrorCommand} qbs để lựa chọn file trước khi nhân bản
+/{BotCommands.TarMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và tải lên với dạng tệp .tar
+/{BotCommands.ZipMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và tải lên với dạng tệp .zip
+/{BotCommands.UnzipMirrorCommand} [download_url][magnet_link]: Bắt đầu nhân bản và nếu file được nhân bản là tệp nén, giải nén nó vào Drive
+/{BotCommands.CloneCommand} [link_Google_Drive]: Copy file/folder vào Google Drive (Team Drive)
+/{BotCommands.CountCommand} [link_Google_Drive]: Đếm số file/folder trong một Google Drive (Team Drive)
+/{BotCommands.WatchCommand} [link hỗ trợ youtube-dl]: Nhân bản qua youtube-dl. Xem /{BotCommands.WatchCommand} để tìm hiểu thêm
+/{BotCommands.TarWatchCommand} [link hỗ trợ youtube-dl]: Nhân bản bằng youtube-dl và tải lên với dạng tệp .tar
+/{BotCommands.CancelMirror}: Trả lời lại tin nhắn nào đang thực hiện tiến trình nhằm hủy tác vụ đó
+/{BotCommands.ListCommand} [từ cần tìm kiếm]: tìm kiếm tất cả những thứ liên quan, nếu có trả về link Google Drive
+/{BotCommands.StatusCommand}: Thông tin tất cả tiến trình
+/{BotCommands.StatsCommand}: Thông tin sử dụng tài nguyên
+/{BotCommands.PingCommand}: Độ trễ của bot
+/{BotCommands.TsHelpCommand}: Trợ giúp về chức năng tìm kiếm torrent
 '''
 
     if CustomFilters.sudo_user(update) or CustomFilters.owner_filter(update):
@@ -146,25 +146,25 @@ def bot_help(update, context):
 
 
 botcmds = [
-        (f'{BotCommands.HelpCommand}','Get Detailed Help'),
-        (f'{BotCommands.MirrorCommand}', 'Start Mirroring'),
-        (f'{BotCommands.TarMirrorCommand}','Start mirroring and upload as .tar'),
-        (f'{BotCommands.UnzipMirrorCommand}','Extract files'),
-        (f'{BotCommands.ZipMirrorCommand}','Start mirroring and upload as .zip'),
-        (f'{BotCommands.CloneCommand}','Copy file/folder to Drive'),
-        (f'{BotCommands.CountCommand}','Count file/folder of Drive link'),
-        (f'{BotCommands.DeleteCommand}','Delete file from Drive'),
-        (f'{BotCommands.WatchCommand}','Mirror Youtube-dl support link'),
-        (f'{BotCommands.TarWatchCommand}','Mirror Youtube playlist link as .tar'),
-        (f'{BotCommands.CancelMirror}','Cancel a task'),
-        (f'{BotCommands.CancelAllCommand}','Cancel all tasks'),
-        (f'{BotCommands.ListCommand}','Searches files in Drive'),
-        (f'{BotCommands.StatusCommand}','Get Mirror Status message'),
-        (f'{BotCommands.StatsCommand}','Bot Usage Stats'),
-        (f'{BotCommands.PingCommand}','Ping the Bot'),
-        (f'{BotCommands.RestartCommand}','Restart the bot [owner/sudo only]'),
-        (f'{BotCommands.LogCommand}','Get the Bot Log [owner/sudo only]'),
-        (f'{BotCommands.TsHelpCommand}','Get help for Torrent search module')
+        (f'{BotCommands.HelpCommand}','Hướng dẫn cụ thể'),
+        (f'{BotCommands.MirrorCommand}', 'Bắt đầu nhân bản'),
+        (f'{BotCommands.TarMirrorCommand}','Nhân bản rồi tải lên với dạng tệp .tar'),
+        (f'{BotCommands.UnzipMirrorCommand}','Giải nén file'),
+        (f'{BotCommands.ZipMirrorCommand}','Nhân bản rồi tải lên với dạng tệp .zip'),
+        (f'{BotCommands.CloneCommand}','Copy file/folder vào Google Drive'),
+        (f'{BotCommands.CountCommand}','Đếm số file, folders hoặc Google Drive links'),
+        (f'{BotCommands.DeleteCommand}','Xóa file từ Google Drive'),
+        (f'{BotCommands.WatchCommand}','Nhân bản link được youtube-dl hỗ trợ'),
+        (f'{BotCommands.TarWatchCommand}','Nhân bản playlist youtube rồi tải lên với .tar'),
+        (f'{BotCommands.CancelMirror}','Hủy bỏ một tác vụ'),
+        (f'{BotCommands.CancelAllCommand}','Hủy bỏ tất cả các tác vụ'),
+        (f'{BotCommands.ListCommand}','Tìm kiếm file trong Google Drive'),
+        (f'{BotCommands.StatusCommand}','Thông tin tất cả tiến trình'),
+        (f'{BotCommands.StatsCommand}','Thông tin sử dụng tài nguyên'),
+        (f'{BotCommands.PingCommand}','Độ trễ của bot'),
+        (f'{BotCommands.RestartCommand}','Khởi động lại bot [chủ/super user]'),
+        (f'{BotCommands.LogCommand}','Lấy thông tin nhật ký [chủ/super user]'),
+        (f'{BotCommands.TsHelpCommand}','Trợ giúp về chức năng tìm kiếm torrent')
     ]
 
 
@@ -178,7 +178,7 @@ def main():
     if os.path.isfile(".restartmsg"):
         with open(".restartmsg") as f:
             chat_id, msg_id = map(int, f)
-        bot.edit_message_text("Restarted successfully!", chat_id, msg_id)
+        bot.edit_message_text("Khởi động lại thành công!", chat_id, msg_id)
         os.remove(".restartmsg")
     bot.set_my_commands(botcmds)
 
@@ -199,7 +199,7 @@ def main():
     dispatcher.add_handler(stats_handler)
     dispatcher.add_handler(log_handler)
     updater.start_polling(drop_pending_updates=IGNORE_PENDING_REQUESTS)
-    LOGGER.info("Bot Started!")
+    LOGGER.info("ĐÃ KHỞI ĐỘNG BOT, ĐANG CHẠY...")
     signal.signal(signal.SIGINT, fs_utils.exit_clean_up)
 
 app.start()
