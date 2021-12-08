@@ -7,7 +7,7 @@ from telegram.ext import CommandHandler
 
 
 def speedtest(update, context):
-    speed = sendMessage("Running Speed Test . . . ", context.bot, update)
+    speed = sendMessage("Đang chạy kiểm tra tốc độ đường truyền...", context.bot, update)
     test = Speedtest()
     test.get_best_server()
     test.download()
@@ -15,16 +15,16 @@ def speedtest(update, context):
     test.results.share()
     result = test.results.dict()
     string_speed = f'''
-<b>Server</b>
-<b>Name:</b> <code>{result['server']['name']}</code>
-<b>Country:</b> <code>{result['server']['country']}, {result['server']['cc']}</code>
-<b>Sponsor:</b> <code>{result['server']['sponsor']}</code>
+<b>Thông tin đường truyền trên Server:</b>
+<b>Tên server:</b> <code>{result['server']['name']}</code>
+<b>Quốc gia:</b> <code>{result['server']['country']}, {result['server']['cc']}</code>
+<b>Nhà cung cấp:</b> <code>{result['server']['sponsor']}</code>
 <b>ISP:</b> <code>{result['client']['isp']}</code>
-<b>SpeedTest Results</b>
-<b>Upload:</b> <code>{speed_convert(result['upload'] / 8)}</code>
-<b>Download:</b>  <code>{speed_convert(result['download'] / 8)}</code>
-<b>Ping:</b> <code>{result['ping']} ms</code>
-<b>ISP Rating:</b> <code>{result['client']['isprating']}</code>
+<b>Kết quả SpeedTest</b>
+<b>Tải lên:</b> <code>{speed_convert(result['upload'] / 8)}</code>
+<b>Tải xuống:</b>  <code>{speed_convert(result['download'] / 8)}</code>
+<b>Ping (Độ trễ):</b> <code>{result['ping']} ms</code>
+<b>Đánh giá ISP:</b> <code>{result['client']['isprating']}</code>
 '''
     editMessage(string_speed, speed)
 
