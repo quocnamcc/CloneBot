@@ -63,7 +63,7 @@ class MirrorListener(listeners.MirrorListeners):
             pass
     def onDownloadComplete(self):
         with download_dict_lock:
-            LOGGER.info(f"Download completed: {download_dict[self.uid].name()}")
+            LOGGER.info(f"Tải xuống hoàn tất: {download_dict[self.uid].name()}")
             download = download_dict[self.uid]
             name = download.name().replace('/', '')
             gid = download.gid()
@@ -81,7 +81,7 @@ class MirrorListener(listeners.MirrorListeners):
                     path = fs_utils.tar(m_path)
             except FileNotFoundError:
                 LOGGER.info('File to archive not found!')
-                self.onUploadError('Internal error occurred!!')
+                self.onUploadError('Đã xảy ra lỗi hệ thống!')
                 return
             try:
                 shutil.rmtree(m_path)
@@ -90,7 +90,7 @@ class MirrorListener(listeners.MirrorListeners):
         elif self.extract:
             try:
                 path = fs_utils.get_base_name(m_path)
-                LOGGER.info(f"Extracting: {name}")
+                LOGGER.info(f"Đang giải nén: {name}")
                 with download_dict_lock:
                     download_dict[self.uid] = ExtractStatus(name, m_path, size)
                 pswd = self.pswd
@@ -113,7 +113,7 @@ class MirrorListener(listeners.MirrorListeners):
             path = f'{DOWNLOAD_DIR}{self.uid}/{name}'
         up_name = pathlib.PurePath(path).name
         up_path = f'{DOWNLOAD_DIR}{self.uid}/{up_name}'
-        LOGGER.info(f"Upload Name: {up_name}")
+        LOGGER.info(f"Tên tệp tải lên: {up_name}")
         drive = gdriveTools.GoogleDriveHelper(up_name, self)
         size = fs_utils.get_path_size(up_path)
         upload_status = UploadStatus(drive, size, gid, self)
@@ -138,7 +138,7 @@ class MirrorListener(listeners.MirrorListeners):
             uname = f"@{self.message.from_user.username}"
         else:
             uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
-        msg = f"{uname} your download has been stopped due to: {error}"
+        msg = f"{uname} quá trình tải của bạn đã bị hủy do: {error}"
         sendMessage(msg, self.bot, self.update)
         if count == 0:
             self.clean()
@@ -156,16 +156,16 @@ class MirrorListener(listeners.MirrorListeners):
             msg = f'<b>☞ 📂Tên tệp : </b><code>{download_dict[self.uid].name()}</code>\n<b>☞ 📦Kích cỡ : </b><code>{size}</code>'
             if os.path.isdir(f'{DOWNLOAD_DIR}/{self.uid}/{download_dict[self.uid].name()}'):
                 msg += '\n<b>☞ 🌀Kiểu : </b><code>Folder</code>'
-                msg += f'\n<b>☞ 🗳Powerd by : @someone</b>'
+                msg += f'\n<b>☞ 🗳Powerd by : @a_penguin</b>'
             else:
-                msg += f'\n<b>☞ 🗳Powerd by : @someone</b>'
+                msg += f'\n<b>☞ 🗳Powerd by : @a_penguin</b>'
             buttons = button_build.ButtonMaker()
             if SHORTENER is not None and SHORTENER_API is not None:
                 surl = requests.get(f'https://{SHORTENER}/api?api={SHORTENER_API}&url={link}&format=text').text
                 buttons.buildbutton("🌠 Drive Link 🌠", surl)
             else:
                 buttons.buildbutton("🌠 Drive Link 🌠", link)
-            LOGGER.info(f'Done Uploading {download_dict[self.uid].name()}')
+            LOGGER.info(f'Tải lên hoàn tất {download_dict[self.uid].name()}')
             if INDEX_URL is not None:
                 url_path = requests.utils.quote(f'{download_dict[self.uid].name()}')
                 share_url = f'{INDEX_URL}/{url_path}'
@@ -199,7 +199,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\n{uname}Join https://www.youtube.com/watch?v=NN-PFn97cR0 để có quyền truy cập'
+                msg += f'\n\n{uname} Vào https://index.kfcsogood.workers.dev/ để xem mới vừa tải cái gì nha (～￣▽￣)～'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
@@ -327,7 +327,7 @@ def _mirror(bot, update, isTar=False, extract=False, isZip=False, isQbit=False):
                         link = file.get_file().file_path
 
     elif not bot_utils.is_url(link) and not bot_utils.is_magnet(link):
-        sendMessage('No download source provided', bot, update)
+        sendMessage('Chưa có nguồn nào để tải', bot, update)
         return
     elif not os.path.exists(link) and not bot_utils.is_mega_link(link) and not bot_utils.is_gdrive_link(link) and not bot_utils.is_magnet(link):
         try:
@@ -357,7 +357,7 @@ def _mirror(bot, update, isTar=False, extract=False, isZip=False, isQbit=False):
                 msg = f'Failed, Tar/Unzip limit is {TAR_UNZIP_LIMIT}.\nYour File/Folder size is {get_readable_file_size(size)}.'
                 sendMessage(msg, listener.bot, listener.update)
                 return
-        LOGGER.info(f"Download Name : {name}")
+        LOGGER.info(f"Tệp tải về : {name}")
         drive = gdriveTools.GoogleDriveHelper(name, listener)
         gid = ''.join(random.SystemRandom().choices(string.ascii_letters + string.digits, k=12))
         download_status = DownloadStatus(drive, size, listener, gid)
