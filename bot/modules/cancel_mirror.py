@@ -28,12 +28,12 @@ def cancel_mirror(update, context):
             except:
                 pass
     if len(args) == 1:
-        msg = f"Please reply to the <code>/{BotCommands.MirrorCommand}</code> message which was used to start the download or send <code>/{BotCommands.CancelMirror} GID</code> to cancel it!"
+        msg = f"Hãy trả lời theo mẫu <code>/{BotCommands.MirrorCommand}</code> tin nhắn này <code>/{BotCommands.CancelMirror} GID</code> để hủy quá trình!"
         if mirror_message and mirror_message.message_id not in keys:
             if BotCommands.MirrorCommand in mirror_message.text or \
                BotCommands.TarMirrorCommand in mirror_message.text or \
                BotCommands.UnzipMirrorCommand in mirror_message.text:
-                msg1 = "Mirror Already Have Been Cancelled"
+                msg1 = "Bạn đã hủy quá trình này rồi!"
                 sendMessage(msg1, context.bot, update)
                 return
             else:
@@ -65,7 +65,7 @@ def cancel_all(update, context):
                 sleep(0.3)
         else:
             break
-    sendMessage(f'{count} Download(s) has been Cancelled!', context.bot, update)
+    sendMessage(f'{count} Quá trình này đã bị hủy!', context.bot, update)
 
 
 
