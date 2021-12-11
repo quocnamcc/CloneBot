@@ -61,7 +61,7 @@ def cloneNode(update, context):
         else:
             uname = f'<a href="tg://user?id={update.message.from_user.id}">{update.message.from_user.first_name}</a>'
         if uname is not None:
-            cc = f'\n\n{uname} Vui lòng vào đây https://index.kfcsogood.workers.dev/ để xem mới vừa tải cái gì nha (～￣▽￣)～'
+            cc = f'\n\n{uname} Vui lòng vào đây https://index.kfcsogood.workers.dev/ để xem mới vừa tải cái gì nha (～￣▽￣)～, còn vào đây để join Google Group để xem được file trên Google Drive nhé https://groups.google.com/g/group-get-link o((>ω< ))o'
             men = f'{uname} '
         if button == "cancelled" or button == "":
             sendMessage(men + result, context.bot, update)
