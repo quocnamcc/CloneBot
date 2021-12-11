@@ -199,7 +199,7 @@ class MirrorListener(listeners.MirrorListeners):
             else:
                 uname = f'<a href="tg://user?id={self.message.from_user.id}">{self.message.from_user.first_name}</a>'
             if uname is not None:
-                msg += f'\n\n{uname} Vào https://index.kfcsogood.workers.dev/ để xem mới vừa tải cái gì nha (～￣▽￣)～'
+                msg += f'\n\n{uname} Vui lòng vào đây https://index.kfcsogood.workers.dev/ để xem mới vừa tải cái gì nha (～￣▽￣)～, còn vào đây để join Google Group để xem được file trên Google Drive nhé https://groups.google.com/g/group-get-link o((>ω< ))o'
             try:
                 fs_utils.clean_download(download_dict[self.uid].path())
             except FileNotFoundError:
